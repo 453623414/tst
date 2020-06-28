@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css"/>
+        <title>JavaScriptプログラミング基礎</title>
+    </head>
+    <body>
+        <h3>変数とは</h3>
+        <script type="text/javascript">
+        var now = new Date();
+        alert(now.getFullYear()+"年");
+        </script>
+
+        <!--イベント-->
+        <input type="button" id="btn" value="click"/>        
+        <script type="text/javascript">
+        var btn = document.getElementById("btn");
+        btn.onclick= function(e){
+            alert("ボタンがクリックされました");
+            alert(e.target.id);
+        }
+        window.onload=function(){
+            alert("welcome!");
+        }
+        </script>
+        
+        <!--Dateオブジェクト-->
+        <input type="button" id="date" value="date"/>
+        <script type="text/javascript">
+        var date = document.getElementById("date");
+        date.onclick= function(){
+            alert(now.getFullYear()+"年");
+        }
+        </script>
+
+        <!--Stringオブジェクト-->
+        　
+    </body>
+</html>
