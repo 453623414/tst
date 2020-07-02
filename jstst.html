@@ -6,11 +6,99 @@
         <title>JavaScriptプログラミング基礎</title>
     </head>
     <body>
+        <!--document操作-->
+        <section>
+            <h3>ファイルの最終更新日</h3>
+            <p>最終更新日：<span id="sp"></span></p>
+        </section>
+        <script>
+            //要素取得
+            var sp = document.getElementById("sp");
+            //最終更新日を取得し、span要素に表示
+            sp.innerHTML = document.lastModified;
+        </script>
+
         <h3>変数とは</h3>
         <script type="text/javascript">
         var now = new Date();
         alert(now.getFullYear()+"年");
         </script>
+
+        <!--リスト表示-->
+        <ol>
+            <li>
+                assssssss
+                <ul>
+                    <li>
+                        fgggggggg
+                    </li>
+                    <li>
+                        vvvvvvvb
+                    </li>
+                </ul>
+            </li>
+            <li>
+                zxxxxxxxxxx
+            </li>
+        </ol>
+        
+        <!--テーブル-->
+        <table border="1">
+            <caption>表テスト</caption>
+            <tr><th rowspan="2">qqq</th><td>abcdefg</td><td colspan="2">b</td></tr>
+            <tr><td>abcdefg</td><td>b</td><td>c</td></tr>
+        </table>
+
+        <!--フォーム-->
+        <p>
+            <form method="POST" action="  " id="fm">
+                お名前は<br>
+                <input type="text" id="name" name="text box" value="james" size="20"><br> 
+                <input type="text" id="age" name="age" size="3"><br>  
+            
+                <select name="pulldown">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c" selected>c</option>
+                </select><br>
+
+                <select name="listbox" size="3" multiple>
+                    <option value="a">aaaaaaaa</option>
+                    <option value="b">b</option>
+                    <option value="c" selected>c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                </select><br>
+
+                <input type="radio" name="radio group" value="man">man 
+                <input type="radio" name="radio group" value="woman">woman
+                <input type="radio" name="radio group2" value="man">tansgender<br>
+
+                <input type="checkbox" name="checkbox group" value="red">red
+                <input type="checkbox" name="checkbox group" value="green">green
+                <input type="checkbox" name="checkbox group" value="blue">blue<br>
+
+                <textarea name="textarea" id="" cols="30" rows="10">意見を書いてください</textarea><br>
+
+                <input type="submit" value="submit">
+                <input type="reset" value="reset">
+                
+            </form>
+            <script>
+                document.getElementById("fm").onsubmit = function(){
+                    if(document.getElementById("name").value == ""){
+                        alert("名前を入力してください");
+                        return false;//情報送信が取り消す
+                    }
+                    if(document.getElementById("age").value == ""){
+                        alert("年齢を入力してください");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>                       
+        </p>
+        
 
         <!--イベント-->
         <input type="button" id="btn" value="click"/>        
@@ -35,6 +123,77 @@
         </script>
 
         <!--Stringオブジェクト-->
+        <script>
+            var phonenumber = "03-1111-1111";
+            if(phonenumber.length == 10 || phonenumber.length ==12){
+                if(phonenumber.substring(0,2)=="03"){
+                    alert("東京の番号です")
+                }
+                else{
+                    alert("市外番号です")
+                }
+            }
+            else{
+                alert("誤った番号です");
+            }
+        </script>
+        
+        <!--コンストラクタとプロパティ定義-->
+        <script>
+            function Car(pSpeed,pFuel){
+                this.speed = pSpeed;
+                this.fuel =pFuel;
+            }
+
+            //加速メソッド
+            Car.prototype.accelerate = function(pSpeed){
+                this.speed += pSpeed;
+            };
+
+            var c = new Car(20,50);
+            c.accelerate(20);
+            alert("現在のスピードは："+c.speed+"km");
+
+            //プロトタイプチェーン
+            function Truck(pSpeed,pFuel,pLoadage){
+                Car.call(this,pSpeed,pFuel);
+                this.loadage = pLoadage;
+            }
+
+            Truck.prototype = new Car();
+
+            var t = new Truck(20,50,10);
+            t.accelerate(50);
+            alert("現在速度"+t.speed+"\n最大積載量"+t.loadage);
+        </script>
+
+        <!--例外処理-->
+        <script>
+        function getErrorMessage(){
+            try{
+                //宣言していない変数を使用
+                var num = flm + "limited";                                
+            }catch(e){
+                //例外オブジェクトのメッセージを表示
+                alert(e.message);
+            }
+        }
+        getErrorMessage();
+        </script>
+
+        <!--windowオブジェクト-->
+        <script>
+            //6000ミリ秒後,openメソッドを実施して、next.htmlを開く
+            //window.setTimeout("window.open('next.html','next')",6000);
+        </script>
+        
+        <!--navigator-->
+        <script>
+            var browser = navigator.userAgent;
+            alert(browser);
+            var ifChome = browser.indexOf("Chrome");
+        </script>
+
         　
     </body>
 </html>
